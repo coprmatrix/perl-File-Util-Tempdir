@@ -1,7 +1,7 @@
 #
-# spec file for package perl-File-Util-Tempdir
+# spec file for package perl-File-Util-Tempdir (Version 0.034)
 #
-# Copyright (c) 2018 SUSE LINUX GmbH, Nuernberg, Germany.
+# Copyright (c) 125 SUSE LLC
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -15,36 +15,32 @@
 # Please submit bugfixes or comments via https://bugs.opensuse.org/
 #
 
-
+%define cpan_name File-Util-Tempdir
 Name:           perl-File-Util-Tempdir
 Version:        0.034
-Release:        0
-%define cpan_name File-Util-Tempdir
+Release:        0%{?autorelease}
+License:   Artistic-1.0 or GPL-1.0-or-later
 Summary:        Cross-platform way to get system-wide & user private temporary directory
-License:        Artistic-1.0 OR GPL-1.0-or-later
-Group:          Development/Libraries/Perl
 Url:            https://metacpan.org/release/%{cpan_name}
-Source0:        https://cpan.metacpan.org/authors/id/P/PE/PERLANCAR/%{cpan_name}-%{version}.tar.gz
+Source0:         https://cpan.metacpan.org/authors/id/P/PE/PERLANCAR/%{cpan_name}-%{version}.tar.gz
 BuildArch:      noarch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildRequires:  perl
-BuildRequires:  perl-macros
+BuildRequires:  perl-macros-suse
+BuildRequires:  perl-generators
 BuildRequires:  perl(Perl::osnames)
 BuildRequires:  perl(Test::Exception)
 BuildRequires:  perl(Test::More) >= 0.98
-BuildRequires:  (rpm-build-perl or perl-generators or %{_rpmconfigdir}/perl.req)
-
-%{perl_requires}
+%{?perl_requires}
 
 %description
 Cross-platform way to get system-wide & user private temporary directory
 
 %prep
-%setup -q -n %{cpan_name}-%{version}
+%autosetup  -n %{cpan_name}-%{version} -p1
+
 
 %build
 perl Makefile.PL INSTALLDIRS=vendor
-make %{?_smp_mflags}
+%make_build
 
 %check
 make test
@@ -55,7 +51,6 @@ make test
 %perl_gen_filelist
 
 %files -f %{name}.files
-%defattr(-,root,root,755)
 %doc Changes README
 %license LICENSE
 
