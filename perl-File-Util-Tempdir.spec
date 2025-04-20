@@ -29,6 +29,8 @@ BuildRequires:  perl-generators
 BuildRequires:  perl(Perl::osnames)
 BuildRequires:  perl(Test::Exception)
 BuildRequires:  perl(Test::More) >= 0.98
+BuildRequires:  make
+BuildRequires:  perl(blib)
 %{?perl_requires}
 
 %description

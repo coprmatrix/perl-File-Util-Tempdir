@@ -1,7 +1,7 @@
 <services>
   <service name="cpanspec" mode="manual">
     <param name="source">File::Util::Tempdir</param>
-    <param name="add-requires">perl(blib)</param>
+    <param name="add-buildrequires">perl(blib)</param>
     <param name="add-buildrequires">make</param>
   </service>
 </services>
